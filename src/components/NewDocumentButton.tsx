@@ -14,7 +14,7 @@ function NewDocumentButton () {
         })
     }
     return (
-        <div>
+        <div className="bg-black rounded-sm text-white">
             <Button onClick={handleCreateNewDocument} disabled = {isPending}>
                 {isPending ? 'Creating...' : 'New Document'}
             </Button>
