@@ -12,6 +12,7 @@
     "@blocknote/core": "^0.24.2",
     "@blocknote/mantine": "^0.24.2",
     "@blocknote/react": "^0.24.2",
+    "@blocknote/shadcn": "^0.25.1",
     "@clerk/nextjs": "^6.12.1",
     "@liveblocks/client": "^2.19.0",
     "@liveblocks/node": "^2.19.0",
@@ -32,7 +33,7 @@
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
-    "yjs": "^13.6.23"
+    "yjs": "^13.6.24"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
