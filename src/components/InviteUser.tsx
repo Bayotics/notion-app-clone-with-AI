@@ -38,9 +38,9 @@ function InviteUser () {
 
     return(
         <Dialog open = {isOpen} onOpenChange={setIsOpen}>
-            <button className="bg-gray-400 p-3 text-white">
+            <div className="bg-gray-400 p-3 text-white">
                 <DialogTrigger>Invite</DialogTrigger>
-            </button>
+            </div>
             <DialogContent className="bg-white">
                 <DialogHeader>
                 <DialogTitle>Invite a user to collaborate</DialogTitle>

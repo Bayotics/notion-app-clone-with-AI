@@ -12,6 +12,8 @@ const useOwner = () => {
     const [usersInRoom] = useCollection (
         user && query(collectionGroup(db, 'rooms'), where('roomId', '==', room.id))
     );
+
+    console.log(usersInRoom)
     useEffect(() => {
         if (usersInRoom?.docs &&usersInRoom.docs.length > 0){
             const owners = usersInRoom.docs.filter(

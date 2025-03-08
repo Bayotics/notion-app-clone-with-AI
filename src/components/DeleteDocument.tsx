@@ -36,9 +36,9 @@ function DeleteDocument () {
 
     return(
         <Dialog open = {isOpen} onOpenChange={setIsOpen}>
-            <button className="bg-red-500 p-3 text-white">
+            <div className="bg-red-500 p-3 text-white">
                 <DialogTrigger>Delete</DialogTrigger>
-            </button>
+            </div>
             <DialogContent className="bg-white">
                 <DialogHeader>
                 <DialogTitle>Are you sure?</DialogTitle>
