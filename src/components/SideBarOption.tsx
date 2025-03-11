@@ -13,10 +13,10 @@ function SidebarOption ({href, id}: {href: string, id: string}) {
     if(!data) return null;
     return (
         <Link href={href}
-            className={`${isActive ?  "active-sidebar" : "border-gray-400"}
+            className={`${isActive ?  "active-sidebar" : "border-gray-100"}
              mt-4`}
         >
-            <p className="truncate p-2 rounded-sm sidebar-title-content text-black">{data.title}</p>
+            <p className="truncate p-2 rounded-sm sidebar-title-content text-white">{data.title}</p>
         </Link>
     )
 }

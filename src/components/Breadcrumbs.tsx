@@ -10,7 +10,9 @@ import {
     BreadcrumbSeparator,
   } from "@/components/ui/breadcrumb"
 import { Fragment } from "react";
-  
+import logo from '../images/capture.png';
+import Image from "next/image";
+
 
 function Breadcrumbs () {
 
@@ -22,7 +24,10 @@ function Breadcrumbs () {
         <Breadcrumb>
             <BreadcrumbList>
                 <BreadcrumbItem>
-                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                    <BreadcrumbLink href="/">
+                        <div></div>
+                        <Image src= {logo} alt="logo" className="h-6 w-10"/>
+                    </BreadcrumbLink>
                 </BreadcrumbItem>
                 {segments.map((segment, index) => {
                     if (!segment) return null;
@@ -35,7 +40,7 @@ function Breadcrumbs () {
                                 {isLast ? (
                                     <BreadcrumbPage>{segment}</BreadcrumbPage>
                                 ) : (
-                                    <BreadcrumbLink href={href}>{segment}</BreadcrumbLink>
+                                    <BreadcrumbLink href={href}>documents</BreadcrumbLink>
                                 )}
                             </BreadcrumbItem>
                         </Fragment>

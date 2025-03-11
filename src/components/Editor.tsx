@@ -13,6 +13,7 @@ import stringToColor from "@/lib/stringToColor";
 import { Button } from "./ui/button";
 import { MoonIcon, SunIcon } from "lucide-react";
 import TranslateDocument from "./TranslateDocument";
+import ChatToDocument from "./ChatToDocument";
 
 type EditorProps = {
     doc: Y.Doc;
@@ -65,15 +66,18 @@ function Editor () {
     if(!doc || !provider){
         return null
     };
-    const style = `hover:text-white ${
+    const style = `hover:text-white cursor-pointer ${
         darkMode ? 'text-gray-300 bg-gray-700 hover:bg-gray-100 hover:text-gray-700' :
         'text-gray-700 bg-gray-200 hover:bg-gray-300 hover:text-gray-700'
     }`
 
     return (
         <div className="max-w-6xl mx-auto">
-            <div className="flex items-center gap-2 justify-end mb-10">
-                <TranslateDocument doc = {doc} />
+            <div className="flex items-center gap-2 mb-10 justify-between">
+                <div className="flex gap-2">
+                    <TranslateDocument doc = {doc} />
+                    <ChatToDocument doc = {doc} />
+                </div>
                 <Button className= {style} onClick={() => (setDarkMode(!darkMode))} >
                     {darkMode ? <SunIcon /> : <MoonIcon />}
                 </Button>

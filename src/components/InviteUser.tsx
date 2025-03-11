@@ -38,8 +38,8 @@ function InviteUser () {
 
     return(
         <Dialog open = {isOpen} onOpenChange={setIsOpen}>
-            <div className="bg-gray-400 p-3 text-white">
-                <DialogTrigger>Invite</DialogTrigger>
+            <div className="bg-gray-400 px-4 h-fit py-[6px] text-white rounded ">
+                <DialogTrigger className="p-0 cursor-pointer">Invite</DialogTrigger>
             </div>
             <DialogContent className="bg-white">
                 <DialogHeader>

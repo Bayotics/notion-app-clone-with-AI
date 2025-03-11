@@ -72,12 +72,12 @@ function SideBar() {
             <NewDocumentButton />
             <div>
                 {groupedData.owner.length === 0 ? (
-                    <h2 className="text-gray-500 font-semibold text-sm">
+                    <h2 className="text-gray-300 font-semibold text-sm">
                         No Document found
                     </h2>
                 ) : (
                     <>
-                        <h2 className="text-gray-500 font-semibold text-sm my-3">
+                        <h2 className=" font-semibold text-sm mt-6 mb-1 text-gray-300">
                             My Documents
                         </h2> 
                         {groupedData.owner.map((doc) => (
@@ -89,7 +89,7 @@ function SideBar() {
             
                 {groupedData.editor.length > 0 && (
                     <>
-                    <h2 className="text-gray-500 font-semibold text-sm">
+                    <h2 className="text-gray-300 font-semibold text-sm mt-8">
                         Shared with me
                     </h2>
                     {groupedData.editor.map((doc) => (
@@ -102,7 +102,7 @@ function SideBar() {
         </>
     )
     return(
-        <div className="p-2 md:p-5 bg-gray-200 relative">
+        <div className="p-2 md:p-5 bg-gray-700 relative">
             <div className="md:hidden">
                 <Sheet>
                     <SheetTrigger>

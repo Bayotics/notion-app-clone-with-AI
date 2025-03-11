@@ -9,39 +9,25 @@ import {
     DialogTrigger
   } from "@/components/ui/dialog"
 import { FormEvent, useState, useTransition } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 import * as Y from 'yjs';
-import { BotIcon, LanguagesIcon } from "lucide-react";
+import { BotIcon, MessageCircleCode } from "lucide-react";
 import { toast } from "sonner";
 import Markdown from 'react-markdown';
+import { Input } from "./ui/input";
 
-
-type Language = 
-    | "english"
-    | "spanish"
-    | "portuguese"
-    | "french"
-    | "german"
-    | "arabic"
-    | "hindi"
-    | "russian"
-    | "japanese"
-
-    const languages : Language[] = ["arabic", "english", "french", "german", 
-        "hindi", "japanese", "portuguese","russian", "spanish"];
-
-function TranslateDocument ({doc} : {doc : Y.Doc}) {
+function ChatToDocument ({doc} : {doc : Y.Doc}) {
     const [isOpen, setIsOpen] = useState(false);
     const [summary, setIsSummary] = useState("");
     const [question, setQuestion] = useState("");
-    const [language, setLanguage] = useState<string>("");
+    const [input, setInput] = useState("");
     const [isPending, startTransition] = useTransition();
     const handleAskQuestion = (e: FormEvent) => {
         e.preventDefault();
+        setQuestion(input);
         startTransition (async () => {
             const documentData = doc.get("document-store").toJSON();
-            const res = await fetch (`${process.env.NEXT_PUBLIC_BASE_URL}/translateDocument`,
+            const res = await fetch (`${process.env.NEXT_PUBLIC_BASE_URL}/chatToDocument`,
                 {
                     method: "POST",
                     headers: {
@@ -49,16 +35,17 @@ function TranslateDocument ({doc} : {doc : Y.Doc}) {
                     },
                     body : JSON.stringify({
                         documentData,
-                        targetLang : language
+                        question : input
                     })
                 }
             )
             if (res.ok){
-                const {translated_text} = await res.json();
-                setIsSummary(translated_text);
-                toast.success("Translated summary successfully");
+                const {message} = await res.json();
+                setInput("");
+                setIsSummary(message);
+                toast.success("Question answered successfully");
                 console.log(summary)
-                console.log(translated_text);
+                console.log(message);
                 console.log(res)
             }
         })
@@ -68,15 +55,15 @@ function TranslateDocument ({doc} : {doc : Y.Doc}) {
         <Dialog open = {isOpen} onOpenChange={setIsOpen}>
             <div className="bg-gray-600 p-3 text-white h-fit">
                 <DialogTrigger className="flex gap-2 cursor-pointer">
-                    <LanguagesIcon />
-                    Translate with AI
+                    <MessageCircleCode className="mr-2" />
+                    AI Chat with Document
                 </DialogTrigger>
             </div>
             <DialogContent className="bg-white">
                 <DialogHeader>
-                <DialogTitle className="">Translate the document</DialogTitle>
+                <DialogTitle className="">Chat to the document</DialogTitle>
                 <DialogDescription className="mb-8">
-                    Select a language and AI will translate a summary of the document in the selected language
+                    Ask a question and chat to the document with AI
                 </DialogDescription>
                 {question && <p className="mt-5 text-gray-500">
                                 Q : {question}     
@@ -95,25 +82,15 @@ function TranslateDocument ({doc} : {doc : Y.Doc}) {
                     </div>
                 )}
                 <form className="flex gap-2" onSubmit={handleAskQuestion}>
-                    <Select
-                        
-                        value={language}
-                        onValueChange={(value) => setLanguage(value)}
-                        >
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder = "select a language" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white text-black cursor-pointer">
-                            {languages.map((language) => (
-                                <SelectItem key={language} value={language}>
-                                    {language.charAt(0).toUpperCase() + language.slice(1)}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                    <button type="submit" disabled = {!language || isPending}
+                    <Input type="text"
+                        placeholder="e.g what is this about?"
+                        className="w-full"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                    />
+                    <button type="submit" disabled = {!input || isPending}
                     className="cursor-pointer">
-                        {isPending ? 'Translating...' : 'Translate'}
+                        {isPending ? 'Asking...' : 'Ask'}
                     </button>
                 </form>
                 
@@ -121,4 +98,4 @@ function TranslateDocument ({doc} : {doc : Y.Doc}) {
         </Dialog>
     )
 }
-export default TranslateDocument;
+export default ChatToDocument;

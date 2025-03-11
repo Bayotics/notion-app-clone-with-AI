@@ -36,8 +36,8 @@ function DeleteDocument () {
 
     return(
         <Dialog open = {isOpen} onOpenChange={setIsOpen}>
-            <div className="bg-red-500 p-3 text-white">
-                <DialogTrigger>Delete</DialogTrigger>
+            <div className="bg-red-500 px-4 h-fit py-[6px] text-white rounded">
+                <DialogTrigger className="cursor-pointer">Delete</DialogTrigger>
             </div>
             <DialogContent className="bg-white">
                 <DialogHeader>
@@ -48,12 +48,12 @@ function DeleteDocument () {
                 </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="sm:justify-end gap-2">
-                    <button type="button" className="bg-red-500 p-3 text-white"
+                    <button type="button" className="bg-red-500 p-3 rounded text-white"
                         onClick={handleDelete} disabled = {isPending}>
                             {isPending ? 'Deleting...' : 'Delete'}
                     </button>
                     <DialogClose asChild>
-                        <button type="button" className="bg-gray-300 p-3 text-black">Close</button>
+                        <button type="button" className="bg-gray-300 p-3 rounded text-black">Close</button>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>

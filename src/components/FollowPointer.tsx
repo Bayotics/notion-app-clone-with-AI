@@ -11,12 +11,12 @@ function FollowPointer ({x, y, info} :
         animate = {{scale: 1, opacity: 1}}
         exit={{scale: 0, opacity: 0}}>
             <svg
-            stroke={'red'}
-            fill={'red'}
+            stroke={'#4b4848'}
+            fill={'#4b4848'}
             strokeWidth="1"
             viewBox='0 0 16 16'
-            className={`h-6 w-6 text-[red] transform -rotate-[70deg] -translate-x-[12px] 
-            -translate-y-[10px] stroke-[red]`}
+            className={`h-6 w-6 text-[#4b4848] transform -rotate-[70deg] -translate-x-[12px] 
+            -translate-y-[10px] stroke-[#4b4848]`}
             height='1em'
             width='1em'
             xmlns = 'http://www.w3.org/2000/svg'

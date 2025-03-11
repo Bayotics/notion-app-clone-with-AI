@@ -5,8 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 .sidebar-title-content{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin-bottom: 10px;
+}
+.sidebar-title-content:hover{
+  background-color: #474444;
 }
 .active-sidebar p{
   font-weight: 700;
